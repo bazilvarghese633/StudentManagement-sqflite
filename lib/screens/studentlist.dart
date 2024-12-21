@@ -49,63 +49,61 @@ class _StudentInfoState extends State<StudentInfo> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white, // Set the background color to white
+    return Scaffold(
+      backgroundColor: Colors.white, // Set the background color to white
 
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: const Text(
-            "STUDENT LIST",
-          ),
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(80),
-            child: Container(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextField(
-                  controller: searchController,
-                  onChanged: (value) {
-                    setState(() {
-                      _fetchStudentsData();
-                    });
-                  },
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: Colors.black,
-                    ),
-                    labelText: "Search",
-                    border: OutlineInputBorder(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: const Text(
+          "STUDENT LIST",
+        ),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(80),
+          child: Container(
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: TextField(
+                controller: searchController,
+                onChanged: (value) {
+                  setState(() {
+                    _fetchStudentsData();
+                  });
+                },
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: Colors.black,
                   ),
+                  labelText: "Search",
+                  border: OutlineInputBorder(),
                 ),
               ),
             ),
           ),
         ),
-        body: _isGridView ? _buildGridView() : _buildListView(),
+      ),
+      body: _isGridView ? _buildGridView() : _buildListView(),
 
-        floatingActionButton: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            FloatingActionButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => AddStudent(),
-                  ),
-                );
-              },
-              child: const Icon(Icons.add),
-            ),
-            const SizedBox(height: 10), // Add spacing between buttons
-            FloatingActionButton(
-              onPressed: _toggleView,
-              child: Icon(_isGridView ? Icons.view_list : Icons.grid_view),
-            ),
-          ],
-        ),
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FloatingActionButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => AddStudent(),
+                ),
+              );
+            },
+            child: const Icon(Icons.add),
+          ),
+          const SizedBox(height: 10), // Add spacing between buttons
+          FloatingActionButton(
+            onPressed: _toggleView,
+            child: Icon(_isGridView ? Icons.view_list : Icons.grid_view),
+          ),
+        ],
       ),
     );
   }
